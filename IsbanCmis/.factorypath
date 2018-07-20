@@ -36,24 +36,24 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/junit/junit/4.12/junit-4.12.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\tika-app-1.10.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\Prodoc.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\lucene-queryparser-5.3.0.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\lucene-core-5.3.0.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\lucene-analyzers-common-5.3.0.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\log4j-1.2.16.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\jsqlparser.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\httpmime-4.5.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\httpcore-4.4.1.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\httpclient-4.5.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\hsqldb.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\derbyclient.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\commons-net-ftp-2.0.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\commons-net-3.6.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\commons-io-2.5.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\commons-io-2.0.1.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\commons-fileupload-1.2.2.jar" enabled="true" runInBatchMode="false"/>
-    <factorypathentry kind="EXTJAR" id="C:\Datos\JavaWjs_OpenCmis\libsProDoc\commons-codec-1.10.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\commons-codec-1.10.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\commons-fileupload-1.2.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\commons-io-2.0.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\commons-io-2.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\commons-net-3.6.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\commons-net-ftp-2.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\derbyclient.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\hsqldb.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\httpclient-4.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\httpcore-4.4.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\httpmime-4.5.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\jsqlparser.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\log4j-1.2.16.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\lucene-analyzers-common-5.3.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\lucene-core-5.3.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\lucene-queryparser-5.3.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\Prodoc.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="C:\lib_prodoc\tika-app-1.10.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="PLUGIN" id="com.ibm.etools.javaee.cdi.ext.ui" enabled="false" runInBatchMode="false"/>
     <factorypathentry kind="PLUGIN" id="com.ibm.jaxrs.annotations.processor" enabled="false" runInBatchMode="false"/>
     <factorypathentry kind="PLUGIN" id="com.ibm.jee.annotations.processor" enabled="false" runInBatchMode="false"/>

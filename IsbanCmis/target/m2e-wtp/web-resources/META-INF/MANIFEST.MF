@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Implementation-Title: OpenCMIS FileShare Server Implementation
 Bundle-SymbolicName: org.apache.chemistry.opencmis.server.fileshare
 Implementation-Version: 1.1.0
-Built-By: 0011557
+Built-By: 0009212
 Implementation-Vendor-Id: org.apache.chemistry.opencmis
 Import-Package: javax.servlet,javax.servlet.http,javax.servlet.resourc
  es
@@ -15,6 +15,6 @@ X-Compile-Target-JDK: 1.7
 Web-ContextPath: fileshare
 X-Apache-SVN-Revision: 
 X-Compile-Source-JDK: 1.7
-Build-Jdk: 1.8.0_161
+Build-Jdk: 1.8.0_144
 Created-By: Maven Integration for Eclipse
 
