@@ -263,6 +263,9 @@ public class XmlUtil {
                             break;
 
                         case "Status":
+                            crearPropiedad(propString, PropertyType.STRING, nombreAttr, attr.getDescription(),
+                                    multivaluado, true, true, false, false, Updatability.READWRITE);
+                            propertyDefinitions.put("Status", propString);
                             break;
 
                         case "Title":

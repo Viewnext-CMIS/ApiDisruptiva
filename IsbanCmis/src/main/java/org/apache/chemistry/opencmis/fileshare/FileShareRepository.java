@@ -45,6 +45,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.Vector;
 
 import javax.xml.stream.XMLStreamReader;
@@ -1320,8 +1321,8 @@ public class FileShareRepository {
                 result.setStream(stream);
             }
 
-        } catch (PDException e1) {
-            throw e1;
+        } catch (PDException e) {
+            throw e;
         }
 
         return result;
@@ -1505,11 +1506,7 @@ public class FileShareRepository {
                     PDFolders child = new PDFolders(sesProdoc.getMainSession());
                     child.Load(id.toString());
 
-                    // TODO : ver tratamiento para todo tipo de carpetas EJ "ExampleFolder"
                     if (!child.getParentId().equals(child.getPDId())) {
-                        // if (!child.getParentId().equals(child.getPDId()) &&
-                        // child.getFolderType().equals("PD_FOLDERS")) {
-
                         listaC.add(child);
                     }
                 }
@@ -1810,6 +1807,7 @@ public class FileShareRepository {
                     break;
 
                 case "Status":
+//                    properties.put("Status", objectFactory.createPropertyStringData("Status", valorAttr));
                     break;
 
                 case "Version":
@@ -2129,92 +2127,194 @@ public class FileShareRepository {
         switch (tipoAttr) {
 
         case tINTEGER:
-            if (attr.getValue() != null) {
-                BigInteger valorInt = BigInteger.valueOf((Integer) attr.getValue());
-                properties.put(nombreAttr, objectFactory.createPropertyIntegerData(nombreAttr, valorInt));
+
+            try {
+                BigInteger valorInt = null;
+
+                if (attr.isMultivalued() && !attr.getValuesList().isEmpty()) {
+
+                    TreeSet<Object> treeValores = attr.getValuesList();
+                    List<BigInteger> listaValores = new ArrayList<BigInteger>();
+                    for (Object valor : treeValores) {
+                        listaValores.add(BigInteger.valueOf((Integer) valor));
+                    }
+
+                    properties.put(nombreAttr, objectFactory.createPropertyIntegerData(nombreAttr, listaValores));
+
+                } else {
+                    if (attr.getValue() != null) {
+                        valorInt = BigInteger.valueOf((Integer) attr.getValue());
+                    } else {
+                        valorInt = BigInteger.valueOf(0);
+                    }
+
+                    properties.put(nombreAttr, objectFactory.createPropertyIntegerData(nombreAttr, valorInt));
+                }
+
+            } catch (PDException e) {
+                e.printStackTrace();
             }
-            
+
             break;
 
         case tFLOAT:
-            if (attr.getValue() != null) {
-                // MutablePropertyDecimal createPropertyDecimalData(String id, List<BigDecimal>
-                // values);
 
-                // MutablePropertyDecimal createPropertyDecimalData(String id, BigDecimal
-                // value);
-                BigDecimal valorFlo = BigDecimal.valueOf((Float) attr.getValue());
-                properties.put(nombreAttr, objectFactory.createPropertyDecimalData(nombreAttr, valorFlo));
+            try {
+                BigDecimal valorFlo = null;
+
+                if (attr.isMultivalued() && !attr.getValuesList().isEmpty()) {
+
+                    TreeSet<Object> treeValores = attr.getValuesList();
+                    List<BigDecimal> listaValores = new ArrayList<BigDecimal>();
+                    for (Object valor : treeValores) {
+                        listaValores.add(BigDecimal.valueOf((Float) valor));
+                    }
+
+                    properties.put(nombreAttr, objectFactory.createPropertyDecimalData(nombreAttr, listaValores));
+
+                } else {
+                    if (attr.getValue() != null) {
+                        valorFlo = BigDecimal.valueOf((Float) attr.getValue());
+                    } else {
+                        valorFlo = BigDecimal.valueOf(0);
+                    }
+
+                    properties.put(nombreAttr, objectFactory.createPropertyDecimalData(nombreAttr, valorFlo));
+                }
+
+            } catch (PDException e) {
+                e.printStackTrace();
             }
+
             break;
 
         case tSTRING:
-            if (attr.getValue() != null) {
-                // MutablePropertyString createPropertyStringData(String id, List<String>
-                // values);
+            try {
+                if (attr.isMultivalued() && !attr.getValuesList().isEmpty()) {
 
-                // MutablePropertyString createPropertyStringData(String id, String value);
-                properties.put(nombreAttr,
-                        objectFactory.createPropertyStringData(nombreAttr, attr.getValue().toString()));
-            } else {
-                properties.put(nombreAttr, objectFactory.createPropertyStringData(nombreAttr, ""));
+                    TreeSet<Object> treeValores = attr.getValuesList();
+                    List<String> listaValores = new ArrayList<String>();
+                    for (Object valor : treeValores) {
+                        listaValores.add((String) valor);
+                    }
+                    properties.put(nombreAttr, objectFactory.createPropertyStringData(nombreAttr, listaValores));
+                } else {
+                    if (attr.getValue() != null) {
+                        properties.put(nombreAttr,
+                                objectFactory.createPropertyStringData(nombreAttr, attr.getValue().toString()));
+                    } else {
+                        properties.put(nombreAttr, objectFactory.createPropertyStringData(nombreAttr, ""));
+                    }
+                }
+            } catch (PDException e) {
+                e.printStackTrace();
             }
+
             break;
 
         case tDATE:
-            if (attr.getValue() != null) {
-            } else {
+
+            try {
+                GregorianCalendar cal = new GregorianCalendar();
+
+                if (attr.isMultivalued() && !attr.getValuesList().isEmpty()) {
+
+                    TreeSet<Object> treeValores = attr.getValuesList();
+                    List<GregorianCalendar> listaValores = new ArrayList<GregorianCalendar>();
+                    for (Object valor : treeValores) {
+                        cal.setTime((Date) valor);
+                        listaValores.add(cal);
+                    }
+
+                    properties.put(nombreAttr, objectFactory.createPropertyDateTimeData(nombreAttr, listaValores));
+
+                } else {
+                    if (attr.getValue() != null) {
+                        cal.setTime((Date) attr.getValue());
+                    }
+
+                    properties.put(nombreAttr, objectFactory.createPropertyDateTimeData(nombreAttr, cal));
+                }
+
+            } catch (PDException e) {
+                e.printStackTrace();
             }
 
             break;
 
         case tBOOLEAN:
-            if (attr.getValue() != null) {
-                // MutablePropertyBoolean createPropertyBooleanData(String id, List<Boolean>
-                // values)
 
-                // MutablePropertyBoolean createPropertyBooleanData(String id, Boolean value)
+            try {
+                if (attr.isMultivalued() && !attr.getValuesList().isEmpty()) {
 
-                properties.put(nombreAttr,
-                        objectFactory.createPropertyBooleanData(nombreAttr, (Boolean) attr.getValue()));
+                    TreeSet<Object> treeValores = attr.getValuesList();
+                    List<Boolean> listaValores = new ArrayList<Boolean>();
+                    for (Object valor : treeValores) {
+                        listaValores.add((Boolean) valor);
+                    }
+                    properties.put(nombreAttr, objectFactory.createPropertyBooleanData(nombreAttr, listaValores));
+                } else {
+                    if (attr.getValue() != null) {
+                        properties.put(nombreAttr,
+                                objectFactory.createPropertyBooleanData(nombreAttr, (Boolean) attr.getValue()));
+                    }
+                }
+            } catch (PDException e) {
+                e.printStackTrace();
             }
+
             break;
 
         case tTIMESTAMP:
-            if (attr.getValue() != null) {
+            try {
+                GregorianCalendar cal = new GregorianCalendar();
+
+                if (attr.isMultivalued() && !attr.getValuesList().isEmpty()) {
+
+                    TreeSet<Object> treeValores = attr.getValuesList();
+                    List<GregorianCalendar> listaValores = new ArrayList<GregorianCalendar>();
+                    for (Object valor : treeValores) {
+                        cal.setTime((Date) valor);
+                        listaValores.add(cal);
+                    }
+
+                    properties.put(nombreAttr, objectFactory.createPropertyDateTimeData(nombreAttr, listaValores));
+
+                } else {
+                    if (attr.getValue() != null) {
+                        cal.setTime((Date) attr.getValue());
+                    }
+
+                    properties.put(nombreAttr, objectFactory.createPropertyDateTimeData(nombreAttr, cal));
+                }
+
+            } catch (PDException e) {
+                e.printStackTrace();
             }
             break;
 
         case tTHES:
-            if (attr.getValue() != null) {
+            // TODO Que tipo de datos es ??
+            try {
+                if (attr.isMultivalued() && !attr.getValuesList().isEmpty()) {
+
+                } else {
+                    if (attr.getValue() != null) {
+
+                    } else {
+
+                    }
+                }
+
+            } catch (PDException e) {
+                e.printStackTrace();
             }
             break;
 
         default:
-            
+
             break;
         }
-
-        // // MutablePropertyDateTime createPropertyDateTimeData(String id,
-        // // List<GregorianCalendar> values);
-        //
-        // MutablePropertyDateTime createPropertyDateTimeData(String id,
-        // GregorianCalendar value);
-        //
-        //
-        // // MutablePropertyHtml createPropertyHtmlData(String id, List<String>
-        // values);
-        //
-        // MutablePropertyHtml createPropertyHtmlData(String id, String value);
-        //
-        // // MutablePropertyId createPropertyIdData(String id, List<String> values);
-        //
-        // MutablePropertyId createPropertyIdData(String id, String value);
-        //
-        //
-        // // MutablePropertyUri createPropertyUriData(String id, List<String> values);
-        //
-        // MutablePropertyUri createPropertyUriData(String id, String value);
 
     }
 
