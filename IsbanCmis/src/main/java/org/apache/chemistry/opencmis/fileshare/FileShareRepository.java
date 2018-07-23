@@ -149,7 +149,7 @@ import org.apache.chemistry.opencmis.commons.spi.Holder;
 import org.apache.chemistry.opencmis.isbanutil.FilterParser;
 import org.apache.chemistry.opencmis.isbanutil.QueryUtil;
 import org.apache.chemistry.opencmis.isbanutil.QueryValidator;
-import org.apache.chemistry.opencmis.isbanutil.XmlUtil;
+import org.apache.chemistry.opencmis.isbanutil.ObjectTypeUtil;
 import org.apache.chemistry.opencmis.prodoc.InsertProDoc;
 import org.apache.chemistry.opencmis.prodoc.SesionProDoc;
 import org.apache.chemistry.opencmis.prodoc.UpdateProDoc;
@@ -1585,6 +1585,14 @@ public class FileShareRepository {
         return result;
     }
 
+    /**
+     * 
+     * @param context
+     * @param sesProdoc
+     * @param filter
+     * @param child
+     * @return
+     */
     private ObjectDataImpl compileOPDProp(CallContext context, SesionProDoc sesProdoc, String filter, ObjPD child) {
 
         ObjectDataImpl objDataOut = new ObjectDataImpl();
@@ -1600,8 +1608,8 @@ public class FileShareRepository {
                 recOPD = fold.getRecSum();
 
                 String folderType = recOPD.getAttr("FolderType").getValue().toString();
-                if (!existObjType(folderType) && !folderType.equals("PD_FOLDERS")) {
-                    ArrayList<Object> typeDefs = XmlUtil.crearObjectType(context, sesProdoc,
+                if (!existObjType(folderType)) {
+                    ArrayList<Object> typeDefs = ObjectTypeUtil.crearObjectType(context, sesProdoc,
                             recOPD.getAttr("FolderType").getValue().toString());
                     FolderTypeDefinitionImpl typeDef = (FolderTypeDefinitionImpl) typeDefs.get(0);
                     this.typeManager.addTypeDefinition(typeDef);
@@ -1614,10 +1622,9 @@ public class FileShareRepository {
                 doc.LoadFull(((PDDocs) child).getPDId().toString());
                 recOPD = doc.getRecSum();
 
-                // probando
                 String docType = recOPD.getAttr("DocType").getValue().toString();
-                if (!existObjType(docType) && !docType.equals("PD_DOCS")) {
-                    ArrayList<Object> typeDefs = XmlUtil.crearObjectType(context, sesProdoc,
+                if (!existObjType(docType)) {
+                    ArrayList<Object> typeDefs = ObjectTypeUtil.crearObjectType(context, sesProdoc,
                             recOPD.getAttr("DocType").getValue().toString());
                     DocumentTypeDefinitionImpl typeDef = (DocumentTypeDefinitionImpl) typeDefs.get(0);
                     this.typeManager.addTypeDefinition(typeDef);
@@ -1644,6 +1651,7 @@ public class FileShareRepository {
                     valorAttr = "";
                 }
 
+                String valorDocType;
                 switch (nombreAttr) {
 
                 case "ACL":
@@ -1701,8 +1709,8 @@ public class FileShareRepository {
                                         .createPropertyDateTimeData(PropertyIds.LAST_MODIFICATION_DATE, cal));
                             }
                         }
-
                     }
+
                     break;
 
                 case "PDId":
@@ -1801,13 +1809,35 @@ public class FileShareRepository {
                     break;
 
                 case "PurgeDate":
+
+                    valorDocType = recOPD.getAttr("DocType").getValue().toString();
+                    if (!valorDocType.equals("PD_DOCS")) {
+                        GregorianCalendar calPur = new GregorianCalendar();
+
+                        if (!valorAttr.equals("")) {
+                            calPur.setTime((Date) attr.getValue());
+                            properties.put("PurgeDate", objectFactory.createPropertyDateTimeData("PurgeDate", calPur));
+                        }
+                    }
+
                     break;
 
                 case "Reposit":
+
+                    valorDocType = recOPD.getAttr("DocType").getValue().toString();
+                    if (!valorDocType.equals("PD_DOCS")) {
+                        properties.put("Reposit", objectFactory.createPropertyStringData("Reposit", valorAttr));
+                    }
+
                     break;
 
                 case "Status":
-//                    properties.put("Status", objectFactory.createPropertyStringData("Status", valorAttr));
+
+                    valorDocType = recOPD.getAttr("DocType").getValue().toString();
+                    if (!valorDocType.equals("PD_DOCS")) {
+                        properties.put("Status", objectFactory.createPropertyStringData("Status", valorAttr));
+                    }
+
                     break;
 
                 case "Version":

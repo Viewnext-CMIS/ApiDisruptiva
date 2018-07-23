@@ -125,9 +125,7 @@ public class FileShareCmisServiceFactory extends AbstractServiceFactory {
         if (service == null) {
 
             FileShareCmisService fileShareService = new FileShareCmisService(repositoryManager);
-//             sesProdoc = new SesionProDoc("PD",
-//             "C:\\Users\\0009212\\git\\Isban-CMIS\\IsbanCmis\\src\\main\\resources\\prodoc.properties",
-//             context.getUsername(), context.getPassword());
+
             sesProdoc = new SesionProDoc("PD", fichProps, context.getUsername(), context.getPassword());
             
             fileShareService.setProdoc(sesProdoc);
